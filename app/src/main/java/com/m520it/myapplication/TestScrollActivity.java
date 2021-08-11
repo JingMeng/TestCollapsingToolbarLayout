@@ -21,8 +21,6 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class TestScrollActivity extends AppCompatActivity {
 
@@ -36,28 +34,27 @@ public class TestScrollActivity extends AppCompatActivity {
     private float llOffDistanceScale;   //距离差比值
     private FrameLayout.LayoutParams params;
 
-    @BindView(R.id.toolbar)
     Toolbar toolbar;
-    @BindView(R.id.toolbar_layout)
     CollapsingToolbarLayout toolbarLayout;
-    @BindView(R.id.app_bar)
     AppBarLayout appBar;
-    @BindView(R.id.fab)
     EditText fab;
-    @BindView(R.id.ll)
     RelativeLayout ll;
-    @BindView(R.id.bac)
     TextView bac;
-    @BindView(R.id.fl)
     FrameLayout fl;
-    @BindView(R.id.image)
     ImageView image;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scrolling2);
-        ButterKnife.bind(this);
+         toolbar= (Toolbar) findViewById(R.id.toolbar);
+         toolbarLayout= (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
+         appBar= (AppBarLayout) findViewById(R.id.app_bar);
+         fab= (EditText) findViewById(R.id.fab);
+         ll= (RelativeLayout) findViewById(R.id.ll);
+         bac= (TextView) findViewById(R.id.bac);
+         fl= (FrameLayout) findViewById(R.id.fl);
+         image= (ImageView) findViewById(R.id.image);
 
         bac.setAlpha(0f);
         totalHeight = getResources().getDimension(R.dimen.app_bar_height);

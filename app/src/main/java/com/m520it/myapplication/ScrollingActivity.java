@@ -9,22 +9,14 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class ScrollingActivity extends AppCompatActivity {
 
-    @BindView(R.id.toolbar)
     Toolbar mToolbar;
-    @BindView(R.id.app_bar)
     AppBarLayout mAppBar;
-    @BindView(R.id.iv_head)
     ImageView mHeadImage;
-    @BindView(R.id.subscription_title)
     TextView mTitle;
-    @BindView(R.id.test)
     TextView test;
-    @BindView(R.id.tv_search)
     TextView tvSearch;
 
     private float mSelfHeight = 0;  //用以判断是否得到正确的宽高值
@@ -38,7 +30,12 @@ public class ScrollingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scrolling);
-        ButterKnife.bind(this);
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        mAppBar = (AppBarLayout) findViewById(R.id.app_bar);
+        mHeadImage = (ImageView) findViewById(R.id.iv_head);
+        mTitle = (TextView) findViewById(R.id.subscription_title);
+        test = (TextView) findViewById(R.id.test);
+        tvSearch = (TextView) findViewById(R.id.tv_search);
 
         final float screenW = getResources().getDisplayMetrics().widthPixels;
         final float toolbarHeight = getResources().getDimension(R.dimen.tool_bar_height);
@@ -92,7 +89,7 @@ public class ScrollingActivity extends AppCompatActivity {
         test.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(ScrollingActivity.this,TestScrollActivity.class));
+                startActivity(new Intent(ScrollingActivity.this, TestScrollActivity.class));
             }
         });
     }

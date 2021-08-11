@@ -10,8 +10,6 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class TestMyRectActivity extends AppCompatActivity {
 
@@ -20,25 +18,27 @@ public class TestMyRectActivity extends AppCompatActivity {
     private FrameLayout.LayoutParams params;
     private boolean isUp = false;   //判断是否为上滑状态
     private boolean isDown = false; //判断是否为下拉状态
-    private int i=0;
+    private int i = 0;
 
 
-    @BindView(R.id.toolbar_layout)
     CollapsingToolbarLayout toolbarLayout;
-    @BindView(R.id.app_bar)
     AppBarLayout appBar;
-    @BindView(R.id.text)
     MyRectCircleEditText text;
-    @BindView(R.id.fl)
     NestedScrollView fl;
-    @BindView(R.id.tv_text)
     TextView mTextView;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test_my_rect);
-        ButterKnife.bind(this);
+        toolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
+        appBar = (AppBarLayout) findViewById(R.id.app_bar);
+        text = (MyRectCircleEditText) findViewById(R.id.text);
+        fl = (NestedScrollView) findViewById(R.id.fl);
+        mTextView = (TextView) findViewById(R.id.tv_text);
 
         text.setListener(new MyRectCircleEditText.onScrollListener() {
             @Override
@@ -50,18 +50,18 @@ public class TestMyRectActivity extends AppCompatActivity {
             }
         });
 
-       text.setOnClickListener(new MyRectCircleEditText.onClickListener() {
-           @Override
-           public void onClick(View view) {
-               startActivity(new Intent(TestMyRectActivity.this,ScrollingActivity.class));
-           }
-       });
+        text.setOnClickListener(new MyRectCircleEditText.onClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(TestMyRectActivity.this, ScrollingActivity.class));
+            }
+        });
         appBar.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
             @Override
             public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
                 //防止初始化进来两次
                 i++;
-                if (i<=2){
+                if (i <= 2) {
                     return;
                 }
 
@@ -79,7 +79,7 @@ public class TestMyRectActivity extends AppCompatActivity {
                     startScroll();
                 }
                 //滑倒底端状态
-                if (verticalOffset == 0){
+                if (verticalOffset == 0) {
                     if (isDown && !text.isIncrease()) {
                         text.startScroll();
                     }
